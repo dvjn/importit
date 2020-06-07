@@ -87,15 +87,22 @@ def import_gist(module_name: str, gist_id: str) -> ModuleType:
 
     module = create_empty_module(module_name)
 
-    submodules = {
-        filename[:-3]: create_module_from_code(
-            filename[:-3], gist_file["content"], gist_file["raw_url"]
-        )
-        for filename, gist_file in gist["files"].items()
-        if filename.endswith(".py")
-    }
+    for gist_file in gist["files"].values():
+        if not gist_file["filename"].endswith(".py"):
+            continue
 
-    module.__dict__.update(submodules)
+        submodule_origin = gist_file["raw_url"]
+        submodule_name = gist_file["filename"][:-3]
+        submodule_content = (
+            gist_file["content"]
+            if not gist_file["truncated"]
+            else get_remote_file_content(submodule_origin)
+        )
+
+        module.__dict__[submodule_name] = create_module_from_code(
+            submodule_name, submodule_content, submodule_origin
+        )
+
     sys.modules[module_name] = module
 
     return module

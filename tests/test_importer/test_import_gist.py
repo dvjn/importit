@@ -3,17 +3,22 @@ from importit.importer import import_gist
 import pytest
 
 
-def mock_gist_content(url):
-    return """{
+def mock_remote_file_content(url):
+    if url == "https://gist.githubusercontent.com/mock-gist/hello_again.py":
+        return 'def say_hello_again():\n    return "hello again"'
+    else:
+        return """{
     "files": {
         "hello.py": {
+            "filename": "hello.py",
             "raw_url": "https://gist.githubusercontent.com/mock-gist/hello.py",
             "truncated": false,
             "content": "def say_hello():\\n    return \\"hello\\""
         },
         "hello_again.py": {
+            "filename": "hello_again.py",
             "raw_url": "https://gist.githubusercontent.com/mock-gist/hello_again.py",
-            "truncated": false,
+            "truncated": true,
             "content": "def say_hello_again():\\n    return \\"hello again\\""
         }
     }
@@ -22,7 +27,9 @@ def mock_gist_content(url):
 
 @pytest.fixture
 def test_gist_id(monkeypatch):
-    monkeypatch.setattr("importit.importer.get_remote_file_content", mock_gist_content)
+    monkeypatch.setattr(
+        "importit.importer.get_remote_file_content", mock_remote_file_content
+    )
     return "mock-gist-id"
 
 
