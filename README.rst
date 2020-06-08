@@ -2,6 +2,8 @@
 importit
 ========
 
+|Package Version Badge| |Package Downloads Badge|
+
 Import python code from anywhere.
 
 
@@ -56,3 +58,10 @@ Importing python code
     """
     dummy = import_code("dummy", python_code)
     dummy.say_hello() # output: hello
+
+
+.. |Package Downloads Badge| image:: https://img.shields.io/pypi/dm/importit
+    :alt: Package Downloads
+
+.. |Package Version Badge| image:: https://img.shields.io/pypi/v/importit?label=version
+    :alt: Package Version
