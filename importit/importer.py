@@ -22,6 +22,9 @@ def import_code(module_name: str, source_code: str, origin: str = None) -> Modul
     Raises:
         ImportError: Raised when the code can't be imported.
     """
+    if not module_name.isidentifier():
+        raise ValueError("Invalid module name.")
+
     module = create_module_from_code(module_name, source_code, origin)
     sys.modules[module_name] = module
 
@@ -41,6 +44,9 @@ def import_local_file(module_name: str, file_path: str) -> ModuleType:
     Raises:
         ImportError: Raised when the file can't be imported.
     """
+    if not module_name.isidentifier():
+        raise ValueError("Invalid module name.")
+
     source_code = get_local_file_content(file_path)
 
     module = create_module_from_code(module_name, source_code, origin=file_path)
@@ -62,6 +68,9 @@ def import_remote_file(module_name: str, url: str) -> ModuleType:
     Raises:
         ImportError: Raised when the file can't be imported.
     """
+    if not module_name.isidentifier():
+        raise ValueError("Invalid module name.")
+
     source_code = get_remote_file_content(url)
 
     module = create_module_from_code(module_name, source_code, origin=url)
@@ -83,6 +92,9 @@ def import_gist(module_name: str, gist_id: str) -> ModuleType:
     Raises:
         ImportError: Raised when the gist can't be imported.
     """
+    if not module_name.isidentifier():
+        raise ValueError("Invalid module name.")
+
     gist = loads(get_remote_file_content("https://api.github.com/gists/" + gist_id))
 
     module = create_empty_module(module_name)
