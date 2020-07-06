@@ -1,0 +1,16 @@
+{
+  "files": {
+    "foo.py": {
+      "filename": "baz.py",
+      "raw_url": "https://gist.githubusercontent.com/johndoe/76onm543lkj210ihg987fed654cba321/raw/321cba654fed987ihg210lkj543onm76/foo.py",
+      "truncated": true,
+      "content": "def say_bar"
+    },
+    "baz.py": {
+      "filename": "bar.py",
+      "raw_url": "https://gist.githubusercontent.com/johndoe/76onm543lkj210ihg987fed654cba321/raw/123cba456fed789ihg012lkj345onm67/baz.py",
+      "truncated": false,
+      "content": "def say_baz():\n    return \"baz\""
+    }
+  }
+}

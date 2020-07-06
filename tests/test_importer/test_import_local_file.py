@@ -2,28 +2,44 @@ from importit.importer import import_local_file
 
 import pytest
 
+mock_local_files_map = {
+    "/home/johndoe/foo.py": "tests/fixtures/foo.py",
+    "/home/johndoe/foo.txt": "tests/fixtures/foo.txt",
+}
 
-def mock_local_file_content(url):
-    return "def say_hello():\n    return 'hello'"
+
+def mock_get_local_file_content(filepath):
+    with open(mock_local_files_map[filepath], "r") as test_file:
+        return test_file.read()
 
 
 @pytest.fixture
-def mock_hello_file(monkeypatch):
+def python_file(monkeypatch):
     monkeypatch.setattr(
-        "importit.importer.get_local_file_content", mock_local_file_content
+        "importit.importer.get_local_file_content", mock_get_local_file_content,
     )
-    return "/home/user/dummy.py"
+    return "/home/johndoe/foo.py"
 
 
-def test_import(mock_hello_file):
-    import_local_file("hello", mock_hello_file)
+@pytest.fixture
+def bad_file(monkeypatch):
+    monkeypatch.setattr(
+        "importit.importer.get_local_file_content", mock_get_local_file_content,
+    )
+    return "/home/johndoe/foo.txt"
 
 
-def test_import_name(mock_hello_file):
-    hello = import_local_file("hello", mock_hello_file)
-    assert hello.__name__ == "hello"
+def test_normal_file_import(python_file):
+    foo = import_local_file("foo", python_file)
+    assert foo.__name__ == "foo"
+    assert foo.say_bar() == "bar"
 
 
-def test_import_function(mock_hello_file):
-    hello = import_local_file("hello", mock_hello_file)
-    assert hello.say_hello() == "hello"
+def test_invalid_module_name(python_file):
+    with pytest.raises(ValueError):
+        import_local_file("foo bar", python_file)
+
+
+def test_invalid_file_import(bad_file):
+    with pytest.raises(SyntaxError):
+        import_local_file("foo", bad_file)

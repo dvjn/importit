@@ -1,0 +1,10 @@
+{
+  "files": {
+    "foo.py": {
+      "filename": "foo.py",
+      "raw_url": "https://gist.githubusercontent.com/johndoe/123abc456def789ghi012jkl345mno67/raw/321cba654fed987ihg210lkj543onm76/foo.py",
+      "truncated": false,
+      "content": "def say_bar():\n    return \"bar\""
+    }
+  }
+}

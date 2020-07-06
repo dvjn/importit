@@ -3,20 +3,17 @@ from importit.importer import import_code
 import pytest
 
 
-@pytest.fixture
-def test_hello_code():
-    return "def say_hello():\n    return 'hello'"
+def test_normal_code_import():
+    foo = import_code("foo", "def say_bar():\n    return 'bar'",)
+    assert foo.__name__ == "foo"
+    assert foo.say_bar() == "bar"
 
 
-def test_import(test_hello_code):
-    import_code("hello", test_hello_code)
+def test_invalid_module_name():
+    with pytest.raises(ValueError):
+        import_code("foo bar", "")
 
 
-def test_import_name(test_hello_code):
-    hello = import_code("hello", test_hello_code)
-    assert hello.__name__ == "hello"
-
-
-def test_import_function(test_hello_code):
-    hello = import_code("hello", test_hello_code)
-    assert hello.say_hello() == "hello"
+def test_invalid_code_import():
+    with pytest.raises(SyntaxError):
+        import_code("foo", "this is not a piece of python code")
