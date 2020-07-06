@@ -22,16 +22,24 @@ Examples
 Importing gist
 ~~~~~~~~~~~~~~
 
-We will import this gist: `Test Gist <https://gist.github.com/divykj/51dcf067f4e445c3f837d26efd2c138e>`_
+We will import this gist: `Test Gist <https://gist.github.com/divykj/51dcf067f4e445c3f837d26efd2c138e>`_ (id: 51dcf067f4e445c3f837d26efd2c138e)
 
 .. code-block:: python3
 
     from importit import import_gist
 
+    # Importing whole gist
     # We give it the module name and gist id from the end of the gist link.
     hellos = import_gist("hellos", "51dcf067f4e445c3f837d26efd2c138e")
     hellos.hello.say_hello() # output: hello
     hellos.hello_again.say_hello_again() # output: hello again
+
+    # Importing specific file from the gist
+    import_gist("hellos", "51dcf067f4e445c3f837d26efd2c138e")
+
+    from hellos import hello
+    hello.say_hello() # output: hello
+
 
 
 Importing python file
