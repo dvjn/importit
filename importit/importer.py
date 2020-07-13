@@ -20,7 +20,7 @@ def import_code(module_name: str, source_code: str, origin: str = None) -> Modul
         Python code imported as a module.
 
     Raises:
-        ImportError: Raised when the code can't be imported.
+        ValueError: When invalid module name is passed.
     """
     if not module_name.isidentifier():
         raise ValueError("Invalid module name.")
@@ -42,7 +42,7 @@ def import_local_file(module_name: str, file_path: str) -> ModuleType:
         File from the path imported as a module.
 
     Raises:
-        ImportError: Raised when the file can't be imported.
+        ValueError: When invalid module name is passed.
     """
     if not module_name.isidentifier():
         raise ValueError("Invalid module name.")
@@ -66,7 +66,7 @@ def import_remote_file(module_name: str, url: str) -> ModuleType:
         File from the URL imported as a module.
 
     Raises:
-        ImportError: Raised when the file can't be imported.
+        ValueError: When invalid module name is passed.
     """
     if not module_name.isidentifier():
         raise ValueError("Invalid module name.")
@@ -90,7 +90,7 @@ def import_gist(module_name: str, gist_id: str) -> ModuleType:
         Gist imported as a module.
 
     Raises:
-        ImportError: Raised when the gist can't be imported.
+        ValueError: When invalid module name is passed.
     """
     if not module_name.isidentifier():
         raise ValueError("Invalid module name.")
