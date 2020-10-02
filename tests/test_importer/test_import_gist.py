@@ -1,6 +1,6 @@
-from importit.importer import import_gist
-
 import pytest
+
+from importit.importer import import_gist
 
 GIST_API_URL = "https://api.github.com/gists/{}"
 RAW_GIST_URL = "https://gist.githubusercontent.com/{}/{}/raw/{}/{}"

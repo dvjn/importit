@@ -1,8 +1,9 @@
 from distutils.cmd import Command
-from distutils.log import INFO
 from distutils.errors import DistutilsError
+from distutils.log import INFO
+from subprocess import CalledProcessError, run
+
 from setuptools import setup
-from subprocess import run, CalledProcessError
 
 
 class TestCommand(Command):
