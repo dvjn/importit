@@ -1,6 +1,6 @@
-from importit.importer import import_local_file
-
 import pytest
+
+from importit.importer import import_local_file
 
 mock_local_files_map = {
     "/home/johndoe/foo.py": "tests/fixtures/foo.py",
@@ -16,7 +16,8 @@ def mock_get_local_file_content(filepath):
 @pytest.fixture
 def python_file(monkeypatch):
     monkeypatch.setattr(
-        "importit.importer.get_local_file_content", mock_get_local_file_content,
+        "importit.importer.get_local_file_content",
+        mock_get_local_file_content,
     )
     return "/home/johndoe/foo.py"
 
@@ -24,7 +25,8 @@ def python_file(monkeypatch):
 @pytest.fixture
 def bad_file(monkeypatch):
     monkeypatch.setattr(
-        "importit.importer.get_local_file_content", mock_get_local_file_content,
+        "importit.importer.get_local_file_content",
+        mock_get_local_file_content,
     )
     return "/home/johndoe/foo.txt"
 

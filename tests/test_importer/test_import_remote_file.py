@@ -1,6 +1,6 @@
-from importit.importer import import_remote_file
-
 import pytest
+
+from importit.importer import import_remote_file
 
 mock_remote_files_map = {
     "https://foo.bar/foo.py": "tests/fixtures/foo.py",
@@ -16,7 +16,8 @@ def mock_get_remote_file_content(filepath):
 @pytest.fixture
 def python_file(monkeypatch):
     monkeypatch.setattr(
-        "importit.importer.get_remote_file_content", mock_get_remote_file_content,
+        "importit.importer.get_remote_file_content",
+        mock_get_remote_file_content,
     )
     return "https://foo.bar/foo.py"
 
@@ -24,7 +25,8 @@ def python_file(monkeypatch):
 @pytest.fixture
 def bad_file(monkeypatch):
     monkeypatch.setattr(
-        "importit.importer.get_remote_file_content", mock_get_remote_file_content,
+        "importit.importer.get_remote_file_content",
+        mock_get_remote_file_content,
     )
     return "http://baz.foo/foo.txt"
 

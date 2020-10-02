@@ -2,10 +2,10 @@
 
 import sys
 from json import loads
+from types import ModuleType
+
 from .util.file import get_local_file_content, get_remote_file_content
 from .util.module import create_empty_module, create_module_from_code
-
-from types import ModuleType
 
 
 def import_code(module_name: str, source_code: str, origin: str = None) -> ModuleType:
