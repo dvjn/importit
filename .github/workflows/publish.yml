@@ -16,12 +16,11 @@ jobs:
           python-version: 3.8
       - name: Install dependencies
         run: |
-          pip install -U wheel pip setuptools
-          pip install '.[dev]'
+          make init
       - name: Lint and Test
         run: |
-          python setup.py test
-  deploy-sdist:
+          make test
+  deploy:
     needs: test
     runs-on: ubuntu-latest
     steps:
@@ -32,38 +31,10 @@ jobs:
           python-version: 3.8
       - name: Install dependencies
         run: |
-          pip install -U wheel pip setuptools
-          pip install '.[publish]'
-      - name: Build and publish sdist
+          make init-publish
+      - name: Build and publish
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
         run: |
-          python setup.py sdist
-          twine check dist/*
-          twine upload --non-interactive --skip-existing dist/*
-  deploy-wheels:
-    needs: test
-    strategy:
-      matrix:
-        platform: [macos-latest, windows-latest]
-        pyversion: [3.6, 3.7, 3.8]
-    runs-on: ${{ matrix.platform }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Python
-        uses: actions/setup-python@v1
-        with:
-          python-version: ${{ matrix.pyversion }}
-      - name: Install dependencies
-        run: |
-          pip install -U wheel pip setuptools
-          pip install '.[publish]'
-      - name: Build and publish wheel
-        env:
-          TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
-        run: |
-          python setup.py bdist_wheel
-          twine check dist/*.whl
-          twine upload --non-interactive --skip-existing dist/*.whl
+          make publish
