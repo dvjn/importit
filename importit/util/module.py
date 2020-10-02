@@ -1,8 +1,7 @@
 from importlib.util import module_from_spec, spec_from_loader
-from types import ModuleType
 
 
-def create_empty_module(module_name: str, origin: str = None) -> ModuleType:
+def create_empty_module(module_name, origin=None):
     """Creates a blank module.
 
     Args:
@@ -17,9 +16,7 @@ def create_empty_module(module_name: str, origin: str = None) -> ModuleType:
     return module
 
 
-def create_module_from_code(
-    module_name: str, source_code: str, origin: str = None
-) -> ModuleType:
+def create_module_from_code(module_name, source_code, origin=None):
     """Creates a module from python code.
 
     Args:

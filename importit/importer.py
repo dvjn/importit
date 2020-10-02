@@ -2,13 +2,12 @@
 
 import sys
 from json import loads
-from types import ModuleType
 
 from .util.file import get_local_file_content, get_remote_file_content
 from .util.module import create_empty_module, create_module_from_code
 
 
-def import_code(module_name: str, source_code: str, origin: str = None) -> ModuleType:
+def import_code(module_name, source_code, origin=None):
     """Imports python code as a module.
 
     Args:
@@ -31,7 +30,7 @@ def import_code(module_name: str, source_code: str, origin: str = None) -> Modul
     return module
 
 
-def import_local_file(module_name: str, file_path: str) -> ModuleType:
+def import_local_file(module_name, file_path):
     """Imports a local file as a module.
 
     Args:
@@ -55,7 +54,7 @@ def import_local_file(module_name: str, file_path: str) -> ModuleType:
     return module
 
 
-def import_remote_file(module_name: str, url: str) -> ModuleType:
+def import_remote_file(module_name, url):
     """Imports a remote file as a module.
 
     Args:
@@ -79,7 +78,7 @@ def import_remote_file(module_name: str, url: str) -> ModuleType:
     return module
 
 
-def import_gist(module_name: str, gist_id: str) -> ModuleType:
+def import_gist(module_name, gist_id):
     """Imports a gist as a module.
 
     Args:
