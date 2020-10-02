@@ -25,7 +25,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -U wheel pip setuptools
-          pip install '.[test]'
+          pip install '.[dev]'
       - name: Test
         run: |
           python setup.py test
