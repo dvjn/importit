@@ -13,7 +13,6 @@ class TestCommand(Command):
     user_options = [
         ("fail-fast", None, "Stop after first failed command."),
         ("no-lint", None, "Don't run linter (flake8)."),
-        ("no-typecheck", None, "Don't run static typechecker (mypy)."),
         ("no-tests", None, "Don't run tests (pytest)."),
         ("no-coverage", None, "Don't generate coverage report."),
     ]
@@ -22,14 +21,12 @@ class TestCommand(Command):
         """Set default values for options."""
         self.fail_fast = False
         self.no_lint = False
-        self.no_typecheck = False
         self.no_tests = False
         self.no_coverage = False
 
     def finalize_options(self):
         self.fail_fast = bool(self.fail_fast)
         self.no_lint = bool(self.no_lint)
-        self.no_typecheck = bool(self.no_typecheck)
         self.no_tests = bool(self.no_tests)
         self.no_coverage = bool(self.no_coverage)
 
@@ -38,8 +35,6 @@ class TestCommand(Command):
         commands = []
         if not self.no_lint:
             commands.append(["flake8"])
-        if not self.no_typecheck:
-            commands.append(["mypy", "importit"])
         if not self.no_tests:
             commands.append(
                 ["pytest"] if self.no_coverage else ["pytest", "--cov=importit"]
