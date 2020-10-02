@@ -43,6 +43,8 @@ jobs:
       - name: Install dependencies
         run: |
           .\make.bat init
+        shell: cmd
       - name: Test
         run: |
           .\make.bat test
+        shell: cmd
