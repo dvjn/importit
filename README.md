@@ -103,3 +103,11 @@ Planning to add **Github**, **Gitlab**, **Bitbucket** (and other git repository 
 ```shell
 ❯ pip install importit
 ```
+
+---
+
+### Want to contribute?
+
+To get more information on contributing, go to the [CONTRIBUTING.md](https://github.com/divykj/importit/blob/master/CONTRIBUTING.md).
+
+Also read the [CODE_OF_CONDUCT.md](https://github.com/divykj/importit/blob/master/CODE_OF_CONDUCT.md).
