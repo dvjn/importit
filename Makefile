@@ -5,7 +5,6 @@ init-pip:
 	$(PY) pip install -U wheel pip setuptools
 
 init: init-pip
-	$(PY) pip install colorama # TODO: remove when make-to-batch fixes issue#1
 	$(PY) pip install -e .[dev]
 
 format:

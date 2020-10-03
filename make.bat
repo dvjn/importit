@@ -20,7 +20,6 @@ GOTO error
 
 :init
 	CALL make.bat init-pip
-	%PY% pip install colorama
 	%PY% pip install -e .[dev]
 	GOTO :EOF
 
