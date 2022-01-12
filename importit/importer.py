@@ -3,8 +3,8 @@
 import sys
 from json import loads
 
-from .util.file import get_local_file_content, get_remote_file_content
-from .util.module import create_empty_module, create_module_from_code
+from importit.util.file import get_local_file_content, get_remote_file_content
+from importit.util.module import create_empty_module, create_module_from_code
 
 
 def import_code(module_name, source_code, origin=None):
