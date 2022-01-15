@@ -12,6 +12,7 @@ IF /I "%1"=="test-cov" GOTO test-cov
 IF /I "%1"=="make" GOTO make
 IF /I "%1"=="init-publish" GOTO init-publish
 IF /I "%1"=="publish" GOTO publish
+IF /I "%1"=="readme" GOTO readme
 GOTO error
 
 :init-pip
@@ -58,6 +59,10 @@ GOTO error
 	python setup.py bdist_wheel
 	%PY% twine check dist/*
 	%PY% twine upload --non-interactive --skip-existing dist/*
+	GOTO :EOF
+
+:readme
+	%PY% grip --pass %pass%
 	GOTO :EOF
 
 :error

@@ -31,3 +31,7 @@ publish: init-publish
 	python setup.py bdist_wheel
 	$(PY) twine check dist/*
 	$(PY) twine upload --non-interactive --skip-existing dist/*
+
+readme:
+	$(PY) grip --pass $(pass)
+
