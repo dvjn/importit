@@ -9,7 +9,7 @@ init: init-pip
 
 format:
 	$(PY) isort $(PY_FILES)
-	$(PY) black $(PY_FILES)
+	$(PY) brunette $(PY_FILES)
 
 lint: format
 	$(PY) flake8 $(PY_FILES)

@@ -25,7 +25,7 @@ GOTO error
 
 :format
 	%PY% isort %PY_FILES%
-	%PY% black %PY_FILES%
+	%PY% brunette %PY_FILES%
 	GOTO :EOF
 
 :lint
