@@ -105,14 +105,10 @@ def import_gist(module_name, gist_id):
         submodule_origin = gist_file["raw_url"]
         submodule_name = gist_file["filename"][:-3]
         submodule_content = (
-            gist_file["content"]
-            if not gist_file["truncated"]
-            else get_remote_file_content(submodule_origin)
+            gist_file["content"] if not gist_file["truncated"] else get_remote_file_content(submodule_origin)
         )
 
-        module.__dict__[submodule_name] = create_module_from_code(
-            submodule_name, submodule_content, submodule_origin
-        )
+        module.__dict__[submodule_name] = create_module_from_code(submodule_name, submodule_content, submodule_origin)
 
     sys.modules[module_name] = module
 
