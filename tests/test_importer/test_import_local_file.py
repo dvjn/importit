@@ -1,4 +1,5 @@
 import pytest
+
 from importit.importer import import_local_file
 
 mock_local_files_map = {

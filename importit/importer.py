@@ -1,7 +1,7 @@
 """Defines various importer functions."""
 
 import sys
-from json import loads
+import json
 
 from importit.util.file import get_local_file_content, get_remote_file_content
 from importit.util.module import create_empty_module, create_module_from_code
@@ -11,7 +11,7 @@ def import_code(module_name, source_code, origin=None):
     """Imports python code as a module.
 
     Args:
-        module_name: The name to be given to imported module.
+        module_name: The name to be given to the imported module.
         source_code: The code to be imported.
         origin: The origin of the code. Defaults to None.
 
@@ -34,7 +34,7 @@ def import_local_file(module_name, file_path):
     """Imports a local file as a module.
 
     Args:
-        module_name: The name to be given to the module.
+        module_name: The name to be given to the imported module.
         file_path: The path of the file to be imported.
 
     Returns:
@@ -58,7 +58,7 @@ def import_remote_file(module_name, url):
     """Imports a remote file as a module.
 
     Args:
-        module_name: The name to be given to imported module.
+        module_name: The name to be given to the imported module.
         url: The url of file to be imported.
 
     Returns:
@@ -82,7 +82,7 @@ def import_gist(module_name, gist_id):
     """Imports a gist as a module.
 
     Args:
-        module_name: The name to be given to imported module.
+        module_name: The name to be given to the imported module.
         gist_id: The id of the gist to be imported.
 
     Returns:
@@ -94,7 +94,7 @@ def import_gist(module_name, gist_id):
     if not module_name.isidentifier():
         raise ValueError("Invalid module name.")
 
-    gist = loads(get_remote_file_content("https://api.github.com/gists/" + gist_id))
+    gist = json.loads(get_remote_file_content("https://api.github.com/gists/" + gist_id))
 
     module = create_empty_module(module_name)
 
