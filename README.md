@@ -22,12 +22,17 @@ Some of use cases can be:
 
 ---
 
-### From where do you want to import?
+## How to install?
 
-<details>
-<summary><b>Github Gist</b></summary>
+```shell
+pip install importit
+```
 
-<br />
+---
+
+## From where do you want to import?
+
+### Github Gist
 
 Find the gist id from the gist url: `https://gist.github.com/<username>/<gist id>`
 
@@ -44,12 +49,7 @@ imported_gist.second_file.some_other_function()
 
 **Note:** The gist will be imported in the form of module, with each python file in the gist as a submodule.
 
-</details>
-
-<details>
-<summary><b>Remote File</b></summary>
-
-<br />
+### Remote File
 
 Use any valid python file url (for example, [`http://bit.ly/aPythonFile`](http://bit.ly/aPythonFile))
 
@@ -61,10 +61,7 @@ imported_file = import_remote_file("imported_file", "http://bit.ly/aPythonFile")
 imported_file.some_function()
 ```
 
-</details>
-
-<details>
-<summary><b>Local File</b></summary>
+### Local File
 
 ```python
 from importit import import_remote_file
@@ -74,10 +71,7 @@ imported_file = import_remote_file("imported_file", "/home/divykj/aPythonFile.py
 imported_file.some_function()
 ```
 
-</details>
-
-<details>
-<summary><b>Code Snippet</b></summary>
+### Code Snippet
 
 ```python
 from importit import import_code
@@ -92,21 +86,11 @@ imported_code = import_code("imported_code", python_code)
 imported_code.some_function()
 ```
 
-</details>
-
 Planning to add **Github**, **Gitlab**, **Bitbucket** (and other git repository services) and maybe **PyPI** support soon.
 
 ---
 
-### How to install?
-
-```shell
-❯ pip install importit
-```
-
----
-
-### Want to contribute?
+## Want to contribute?
 
 To get more information on contributing, go to the [CONTRIBUTING.md](https://github.com/divykj/importit/blob/master/CONTRIBUTING.md).
 
